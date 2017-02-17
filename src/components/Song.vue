@@ -11,8 +11,17 @@
         <p>Album: {{song.collection}}</p>
         <p>By: {{song.artist}}</p>
         <p>Price: ${{song.price}}</p>
+        
         <button v-if="!song.isAdded" class="btn btn-primary" @click="addSong">Add</button>
-        <button v-if="song.isAdded" class="btn btn-warning" @click="removeSong">Remove</button>
+
+        <div v-if="song.isAdded">  
+            <button class="btn btn-warning" @click="removeSong">Remove</button>
+            <i class="fa fa-thumbs-up" aria-hidden="true" @click="promoteSong"></i>
+            {{song.upvotes}}
+            <i class="fa fa-thumbs-down" aria-hidden="true" @click="demoteSong"></i>
+            {{song.downvotes}}
+        </div>
+       
     </div>
 </template>
 
@@ -34,6 +43,14 @@ import myTunesService from '../services/mytunes-service'
             removeSong() {
                 console.log(this.song)
                 myTunesService.removeTrack(this.song)
+            },
+            promoteSong() {
+                console.log("Upvoted")
+                myTunesService.promoteTrack(this.song)
+            },
+            demoteSong() {
+                console.log("Downvoted")
+                myTunesService.demoteTrack(this.song)
             }
         }
     }

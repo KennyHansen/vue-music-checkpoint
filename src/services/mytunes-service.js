@@ -24,6 +24,8 @@ export default {
     // UNAWARE THAT A CHANGE HAS OCCURED TO YOUR DATA
     // TO ELIMINATE THIS PROBLEM YOU CAN USE
     track.isAdded = true
+    track.upvotes = 1
+    track.downvotes = 0
     Vue.set(myTunes, track.id, track)
     saveMytunes()
     // YOU CAN READ MORE ABOUT VUE.SET HERE
@@ -35,6 +37,14 @@ export default {
     console.log(myTunes)
     saveMytunes()
   },
-  promoteTrack() { },
-  demoteTrack() { }
+  promoteTrack(track) {
+    track.upvotes += 1
+    // Vue.set(myTunes, track.id, track)
+    saveMytunes()
+  },
+  demoteTrack(track) {
+    track.downvotes += 1
+    // Vue.set(myTunes, track.id, track)
+    saveMytunes()
+  }
 }

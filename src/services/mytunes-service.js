@@ -18,17 +18,23 @@ function loadMytunes() {
 loadMytunes()
 
 export default {
-  getTracks() { },
+  getTracks() { return myTunes },
   addTrack(track) {
     // OCCASIONALLY YOU WILL RUN INTO ISSUES WHERE VUE WILL BE
     // UNAWARE THAT A CHANGE HAS OCCURED TO YOUR DATA
-    // TO ELIMINATE THIS PROBLEM YOU CAN USE 
+    // TO ELIMINATE THIS PROBLEM YOU CAN USE
+    track.isAdded = true
     Vue.set(myTunes, track.id, track)
     saveMytunes()
     // YOU CAN READ MORE ABOUT VUE.SET HERE
     // https://vuejs.org/v2/api/#Vue-set
-   },
-  removeTrack() { },
+  },
+  removeTrack(track) {
+    track.isAdded = false
+    Vue.delete(myTunes, track.id)
+    console.log(myTunes)
+    saveMytunes()
+  },
   promoteTrack() { },
   demoteTrack() { }
 }

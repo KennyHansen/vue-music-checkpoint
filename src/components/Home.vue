@@ -7,8 +7,14 @@
 </template>
 
 <script>
+import Itunes from './Itunes'
+import MyTunes from './MyTunes'
 export default {
   name: 'home',
+  components: {
+    Itunes,
+    MyTunes
+  },
   data () {
     return {
       
@@ -28,12 +34,12 @@ export default {
   display: inline-block;
   min-height: 500px;
   min-width: 50%;
-  background: purple;
+  background: palegreen;
 }
 
 .itunes{
   display: inline-block;
-  background: pink;
+  background: darkslategray;
   min-height: 500px;
   min-width: 45%;
 }
